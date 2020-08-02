@@ -23,6 +23,14 @@ public abstract class BaseSorter implements ISorter {
 	}
 	
 	public abstract void sort();
+	
+	public boolean slotsCanBeMergedCompletely(Slot firstSlot, Slot secondSlot) {
+		if (!hasSameItem(firstSlot, secondSlot)) {
+			return false;
+		}
+		
+		return (firstSlot.getStack().getCount() + secondSlot.getStack().getCount() <= firstSlot.getStack().getMaxStackSize());
+	}
 
 	public boolean isEmptySlot(Slot slot) {
 		return getItemIdFromSlot(slot) == 0;
